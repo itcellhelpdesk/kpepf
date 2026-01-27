@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPEPF Schedule View | IT Cell Helpdesk</title>
+    <title>KPEPF Schedule View | District Treasury</title>
     <!-- Bootstrap & DataTables CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -17,151 +17,9 @@
     
     <style>
         body {
-            /*background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: #d7e2ff6e;
             padding: 20px;
-        }
-        
-        /* Login Container */
-        .login-center-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        .login-container {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-header h3 {
-            color: #667eea;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .login-header p {
-            color: #666;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .input-group {
-            position: relative;
-        }
-        
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #667eea;
-            z-index: 10;
-            font-size: 1.1rem;
-        }
-        
-        .form-control {
-            padding-left: 50px;
-            height: 48px;
-            border-radius: 8px;
-            border: 2px solid #e1e5e9;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
-        }
-        
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #667eea;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-        
-        .login-error {
-            color: #dc3545;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            display: none;
-            text-align: center;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            height: 48px;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-primary:disabled {
-            background: #cccccc;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .forgot-link {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .forgot-link:hover {
-            text-decoration: underline;
-        }
-        
-        .brand-text {
-            color: white;
-            text-align: center;
-            margin-top: 25px;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        /* Main Content Styles */
-        .main-content {
-            display: none;
-            width: 100%;
-            max-width: 1400px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .card {
@@ -183,10 +41,45 @@
             margin-bottom: 5px;
         }
         
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .btn {
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            background: #cccccc;
+            transform: none;
+            box-shadow: none;
+        }
+        
         .radio-group {
             display: flex;
             gap: 20px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
         
         .radio-option {
@@ -213,11 +106,6 @@
         
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .result-header {
@@ -255,23 +143,6 @@
             font-weight: 600;
         }
         
-        .pdf-btn {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .pdf-btn:hover {
-            background-color: #c82333;
-        }
-        
         .total-row {
             background-color: #e9ecef !important;
             font-weight: bold;
@@ -292,6 +163,15 @@
             font-weight: 600;
         }
         
+        .unconfirmed-badge {
+            background-color: #6c757d;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
         .month-year-display {
             background-color: #f8f9fa;
             padding: 15px;
@@ -300,13 +180,29 @@
             border-left: 4px solid #667eea;
         }
         
+        .section-header {
+            background-color: #e9ecef;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 20px 0 10px;
+            border-left: 4px solid #28a745;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .dt-schedule-header {
+            background-color: #e9ecef;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 20px 0 10px;
+            border-left: 4px solid #ffc107;
+            font-weight: 600;
+            color: #495057;
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding: 10px;
-            }
-            
-            .login-container {
-                padding: 25px;
             }
             
             .radio-group {
@@ -320,438 +216,184 @@
                 gap: 10px;
             }
         }
-        
-        @media (max-height: 600px) {
-            body {
-                align-items: flex-start;
-                padding-top: 30px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Login Container (Centered) -->
-    <div id="loginCenter" class="login-center-container">
-        <div class="login-container">
-            <div class="login-header">
-                <h3><i class="bi bi-shield-lock"></i> KPEPF Login</h3>
-                <p>IT Cell HelpDesk</p>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="bi bi-check-circle"></i> KPEPF Schedule Receipts & Payment Details</h4>
             </div>
             
-            <form id="loginForm">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-icon">
-                            <i class="bi bi-person-badge"></i>
-                        </span>
-                        <input type="text" 
-                               class="form-control" 
-                               id="loginUserId" 
-                               placeholder="Enter User ID" 
-                               required
-                               autocomplete="username">
+            <div class="card-body">
+                <!-- Filter Section -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <label class="form-label">District Treasury</label>
+                        <select class="form-select" id="district" required>
+                            <option value="">Select District</option>
+                        </select>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-icon">
-                            <i class="bi bi-key"></i>
-                        </span>
-                        <input type="password" 
-                               class="form-control" 
-                               id="loginPassword" 
-                               placeholder="Enter Password" 
-                               required
-                               autocomplete="current-password">
-                        <button type="button" class="toggle-password" id="loginTogglePassword">
-                            <i class="bi bi-eye"></i>
+                    
+                    <div class="col-md-2">
+                        <label class="form-label">Month</label>
+                        <select class="form-select" id="month">
+                            <option value="">Select</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <label class="form-label">Year</label>
+                        <input type="text" class="form-control" id="year" placeholder="(YYYY format)">
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label class="form-label">Type</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="typeReceipt" name="type" value="Receipt" checked>
+                                <label for="typeReceipt">Receipt</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="typePayment" name="type" value="Payment">
+                                <label for="typePayment">Payment</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-primary w-100" onclick="viewConfirmedData()">
+                            <i class="bi bi-eye"></i> View Data
                         </button>
                     </div>
                 </div>
                 
-                <div class="text-danger small mt-2" id="loginError" style="display: none;">
-                    <i class="bi bi-exclamation-circle me-1"></i>
-                    <span id="loginErrorMessage"></span>
+                <!-- Loading Spinner -->
+                <div id="loadingSection" class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading data. Please wait...</p>
                 </div>
                 
-                <button type="submit" class="btn btn-primary w-100 mt-1" id="loginButton">
-                    <span class="button-text">Sign In</span>
-                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                </button>
-                
-                <div class="text-center mt-3">
-                    <a href="javascript:void(0)" 
-                       class="forgot-link" 
-                       onclick="openForgotPasswordPopup()">
-                        <i class="bi bi-question-circle me-1"></i>
-                        Forgot Password?
-                    </a>
+                <!-- Results Section -->
+                <div id="resultsSection" style="display: none;">
+                    <div class="month-year-display">
+                        <div class="result-header">
+                            <h5 id="resultHeading" style="color: #667eea; margin: 0;"></h5>
+                        </div>
+                        <div id="summaryInfo" class="mt-2"></div>
+                    </div>
+                    
+                    <!-- Receipt Schedules Section -->
+                    <div class="section-header">
+                        <i class="bi bi-check-circle-fill text-success"></i> All Treasury Schedules 
+                    </div>
+                    
+                    <div class="table-responsive mb-4">
+                        <table id="receiptScheduleTable" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Treasury</th>
+                                    <th>Type</th>
+                                    <th>Month</th>
+                                    <th>Year</th>
+                                    <th>Gross Total</th>
+                                    <th>Document</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="receiptScheduleTableBody">
+                                <!-- Receipt schedule data will be inserted here -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="5" class="text-end fw-bold">Schedule Total:</td>
+                                    <td id="receiptScheduleGrandTotal" class="total-amount">0.00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- DT- Schedule Details Section -->
+                    <div class="dt-schedule-header">
+                        <i class="bi bi-list-check text-warning"></i> DT- Schedule 
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="dtScheduleTable" class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Treasury</th>
+                                    <th>Type</th>
+                                    <th>Month</th>
+                                    <th>Year</th>
+                                    <th>Gross Total</th>
+                                    <th>Document</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dtScheduleTableBody">
+                                <!-- DTresponse data will be inserted here -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="5" class="text-end fw-bold">DT-Schedule Total:</td>
+                                    <td id="dtScheduleGrandTotal" class="total-amount">0.00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-            </form>
-        </div>
-        
-        <div class="brand-text">
-           Version • v1.0
-        </div>
-    </div>
-    
-    <!-- Main Content (Initially Hidden) -->
-    <div id="mainContent" class="main-content">
-        <div class="container-fluid">
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="mb-0"><i class="bi bi-check-circle"></i> KPEPF Schedule - Receipts & Payments</h4>
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-outline-light" onclick="logout()">
-                                <i class="bi bi-box-arrow-right"></i> Logout
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 
-                <div class="card-body">
-                    <!-- Filter Section -->
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-3">
-                            <label class="form-label">District Treasury</label>
-                            <select class="form-select" id="district" required>
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        
-                        <div class="col-md-2">
-                            <label class="form-label">Month</label>
-                            <select class="form-select" id="month">
-                                <option value="">Select</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
-                        </div>
-                        
-                        <div class="col-md-2">
-                            <label class="form-label">Year</label>
-                            <input type="text" class="form-control" id="year" placeholder="">
-                        </div>
-                        
-                        <div class="col-md-3">
-                            <label class="form-label">Type</label>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="typeReceipt" name="type" value="Receipt" checked>
-                                    <label for="typeReceipt">Receipt</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="typePayment" name="type" value="Payment">
-                                    <label for="typePayment">Payment</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-2 d-flex align-items-end">
-                            <button class="btn btn-primary w-100" onclick="viewConfirmedData()">
-                                <i class="bi bi-eye"></i> View
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Loading Spinner -->
-                    <div id="loadingSection" class="loading">
-                        <div class="loading-spinner"></div>
-                        <p>Loading. Please wait...</p>
-                    </div>
-                    
-                    <!-- Results Section -->
-                    <div id="resultsSection" style="display: none;">
-                        <div class="month-year-display">
-                            <div class="result-header">
-                                <h5 id="resultHeading" style="color: #667eea; margin: 0;"></h5>
-                                <button id="pdfButton" class="pdf-btn" style="display: none;">
-                                    <i class="bi bi-file-pdf"></i> PDF
-                                </button>
-                            </div>
-                            <div id="summaryInfo" class="mt-2"></div>
-                        </div>
-                        
-                        <div class="table-responsive">
-                            <table id="resultsTable" class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Treasury</th>
-                                        <th>Type</th>
-                                        <th>Month</th>
-                                        <th>Year</th>
-                                        <th>Gross Total</th>
-                                        <th>Document</th>
-                                        <th>Confirmed</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableBody">
-                                    <!-- Data will be inserted here -->
-                                </tbody>
-                                <tfoot>
-                                    <tr class="total-row">
-                                        <td colspan="5" class="text-end fw-bold">Grand Total:</td>
-                                        <td id="grandTotal" class="total-amount">0.00</td>
-                                        <td colspan="2"></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- No Results -->
-                    <div id="noResultsSection" class="text-center py-5" style="display: none;">
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle fs-4"></i>
-                            <h5 class="mt-2">No Records Found</h5>
-                        </div>
+                <!-- No Results -->
+                <div id="noResultsSection" class="text-center py-5" style="display: none;">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle fs-4"></i>
+                        <h5 class="mt-2">No Records Found</h5>
+                        <p>No records match your filter criteria. Try different filters.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    
     <script>
-        // Configuration
-        const API_KEY = "AIzaSyBAuS3Brpsw5JOJnjNJii1UlFa7ClXf8d4";
-        const SHEET_ID = "1J3hQtpZv4zyCUVANURf9B4lhORp2_ml-XlIWLZWR3aA";
-        const LOGIN_SHEET_ID = "11wvVQ2G41ke3g6RdfYX8AJAl0w-fnf2NQ_Agufz0wXY";
-        const RANGE = "response!A:I"; // Columns A to I (Timestamp to Confirm)
-        const SETTINGS_SHEET = "settings";
-        
         // Global variables
         let allDistricts = [];
-        let currentData = [];
-        let dataTable = null;
-        let isAuthenticated = false;
+        let receiptScheduleData = [];
+        let dtScheduleData = [];
+        let receiptScheduleTable = null;
+        let dtScheduleTable = null;
+        const API_KEY = "AIzaSyBAuS3Brpsw5JOJnjNJii1UlFa7ClXf8d4";
+        const SHEET_ID = "1J3hQtpZv4zyCUVANURf9B4lhORp2_ml-XlIWLZWR3aA";
         
         // Initialize when page loads
         $(document).ready(function() {
-            console.log("KPEPF Confirmed View application loaded");
-            
-            // Check if already authenticated
-            checkAuth();
-            
-            // Initialize login form
-            initializeLogin();
-            
-            // Initialize PDF button
-            $('#pdfButton').click(generatePDF);
+            console.log("KPEPF Data View application loaded");
+            loadDistricts();
             
             // Set current year as default
             const currentYear = new Date().getFullYear();
             $('#year').val(currentYear);
+            
+            // Set Receipt as default selection
+            $('#typeReceipt').prop('checked', true);
         });
-        
-        // Check authentication status
-        function checkAuth() {
-            const authToken = sessionStorage.getItem('kpepf_auth_token');
-            const loginTime = sessionStorage.getItem('kpepf_login_time');
-            
-            if (authToken && loginTime) {
-                const currentTime = new Date().getTime();
-                const sessionAge = currentTime - parseInt(loginTime);
-                const SESSION_TIMEOUT = 15 * 60 * 1000; // 15 minutes
-                
-                if (sessionAge < SESSION_TIMEOUT) {
-                    isAuthenticated = true;
-                    showMainContent();
-                } else {
-                    // Session expired
-                    logout();
-                }
-            }
-        }
-        
-        // Show login container (centered)
-        function showLogin() {
-            $('#loginCenter').show();
-            $('#mainContent').hide();
-            $('#loginUserId').focus();
-        }
-        
-        // Show main content
-        function showMainContent() {
-            $('#loginCenter').hide();
-            $('#mainContent').show();
-            loadDistricts();
-        }
-        
-        // Logout function
-        function logout() {
-            sessionStorage.removeItem('kpepf_auth_token');
-            sessionStorage.removeItem('kpepf_login_time');
-            sessionStorage.removeItem('kpepf_user_name');
-            sessionStorage.removeItem('kpepf_user_role');
-            isAuthenticated = false;
-            showLogin();
-        }
-        
-        // Initialize login form
-        function initializeLogin() {
-            // Toggle password visibility
-            $('#loginTogglePassword').click(function() {
-                const passwordInput = $('#loginPassword');
-                const icon = $(this).find('i');
-                
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.attr('type', 'text');
-                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
-                } else {
-                    passwordInput.attr('type', 'password');
-                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
-                }
-            });
-            
-            // Auto-focus on user ID
-            $('#loginUserId').focus();
-            
-            // Auto-focus on password after user ID
-            $('#loginUserId').on('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    $('#loginPassword').focus();
-                }
-            });
-            
-            // Auto-submit on password enter
-            $('#loginPassword').on('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    $('#loginForm').submit();
-                }
-            });
-            
-            // Login form submission
-            $('#loginForm').submit(async function(e) {
-                e.preventDefault();
-                
-                const userId = $('#loginUserId').val().trim();
-                const password = $('#loginPassword').val().trim();
-                const loginButton = $('#loginButton');
-                const errorDiv = $('#loginError');
-                const errorText = $('#loginErrorMessage');
-                
-                // Reset errors
-                errorDiv.hide();
-                
-                // Basic validation
-                if (!userId || !password) {
-                    errorText.text('Please enter User ID and Password');
-                    errorDiv.show();
-                    return;
-                }
-                
-                // Show loading state
-                loginButton.prop('disabled', true);
-                loginButton.find('.button-text').text('Authenticating...');
-                loginButton.find('.spinner-border').removeClass('d-none');
-                
-                try {
-                    // Fetch credentials from Google Sheets
-                    const settingsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${LOGIN_SHEET_ID}/values/${SETTINGS_SHEET}!A2:F?key=${API_KEY}`;
-                    
-                    const response = await fetch(settingsUrl);
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    
-                    const data = await response.json();
-                    const treasurySettings = data.values || [];
-                    
-                    let loginSuccessful = false;
-                    let userName = '';
-                    let userRole = '';
-                    
-                    // Check each row for matching credentials
-                    for (let i = 0; i < treasurySettings.length; i++) {
-                        const row = treasurySettings[i];
-                        if (row[1] === userId && row[2] === password) {
-                            loginSuccessful = true;
-                            userName = row[1] || userId;
-                            userRole = row[3] || 'User';
-                            break;
-                        }
-                    }
-                    
-                    if (loginSuccessful) {
-                        // Generate authentication token
-                        const loginTime = new Date().getTime();
-                        const random = Math.random().toString(36).substring(2);
-                        const authToken = btoa(`${loginTime}:${random}:${userName}`);
-                        
-                        // Store authentication data
-                        sessionStorage.setItem('kpepf_auth_token', authToken);
-                        sessionStorage.setItem('kpepf_login_time', loginTime.toString());
-                        sessionStorage.setItem('kpepf_user_name', userName);
-                        sessionStorage.setItem('kpepf_user_role', userRole);
-                        
-                        // Show success
-                        loginButton.find('.button-text').text('Success!');
-                        loginButton.removeClass('btn-primary').addClass('btn-success');
-                        
-                        setTimeout(() => {
-                            isAuthenticated = true;
-                            showMainContent();
-                        }, 1000);
-                        
-                    } else {
-                        // Failed login
-                        errorText.text('Invalid User ID or Password');
-                        errorDiv.show();
-                        
-                        // Shake animation
-                        $('#loginForm').addClass('shake');
-                        setTimeout(() => {
-                            $('#loginForm').removeClass('shake');
-                        }, 500);
-                    }
-                    
-                } catch (error) {
-                    console.error('Login Error:', error);
-                    errorText.text('Error connecting to server. Please try again later.');
-                    errorDiv.show();
-                    
-                } finally {
-                    // Reset button state
-                    loginButton.prop('disabled', false);
-                    loginButton.find('.button-text').text('Sign In');
-                    loginButton.find('.spinner-border').addClass('d-none');
-                    loginButton.removeClass('btn-success').addClass('btn-primary');
-                }
-            });
-        }
-        
-        // Forgot Password Popup
-        function openForgotPasswordPopup() {
-            const width = 600;
-            const height = 500;
-            const left = (screen.width - width) / 2;
-            const top = (screen.height - height) / 2;
-            
-            window.open(
-                'https://script.google.com/macros/s/AKfycbztfDzKffRaQXd5-_JyYGr_I26_7cXbmCApixAxv6ps/dev',
-                'ForgotPasswordPopup',
-                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,toolbar=no,location=no`
-            );
-        }
         
         // Load districts from Google Sheets
         function loadDistricts() {
@@ -794,13 +436,8 @@
                 });
         }
         
-        // View confirmed data based on filters
+        // View data based on filters
         function viewConfirmedData() {
-            if (!isAuthenticated) {
-                showLogin();
-                return;
-            }
-            
             const district = $('#district').val();
             const month = $('#month').val();
             const year = $('#year').val();
@@ -822,26 +459,37 @@
             $('#resultsSection').hide();
             $('#noResultsSection').hide();
             
-            // Destroy existing DataTable if it exists
-            if (dataTable) {
-                dataTable.destroy();
-                dataTable = null;
+            // Destroy existing DataTables if they exist
+            if (receiptScheduleTable) {
+                receiptScheduleTable.destroy();
+                receiptScheduleTable = null;
             }
             
-            console.log("Fetching confirmed data with filters:", { district, month, year, type });
+            if (dtScheduleTable) {
+                dtScheduleTable.destroy();
+                dtScheduleTable = null;
+            }
             
-            // Fetch data from response sheet
-            const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+            console.log("Fetching data with filters:", { district, month, year, type });
             
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
+            // Fetch data from both sheets
+            const promises = [
+                fetchDataFromSheet("response", district, month, year, type),
+                fetchDataFromSheet("DTresponse", district, month, year, type)
+            ];
+            
+            Promise.all(promises)
+                .then(([receiptScheduleDataResult, dtScheduleDataResult]) => {
                     $('#loadingSection').hide();
                     
-                    if (data.values && data.values.length > 1) {
-                        processData(data.values, district, month, year, type);
+                    const totalRecords = receiptScheduleDataResult.length + dtScheduleDataResult.length;
+                    
+                    if (totalRecords > 0) {
+                        displayData(receiptScheduleDataResult, dtScheduleDataResult, district, month, year, type);
+                        $('#resultsSection').show();
+                        $('#noResultsSection').hide();
                     } else {
-                        showMessage('No data found in response sheet.', 'info');
+                        $('#resultsSection').hide();
                         $('#noResultsSection').show();
                     }
                 })
@@ -853,8 +501,27 @@
                 });
         }
         
-        // Process and filter data
-        function processData(rows, district, month, year, type) {
+        // Fetch data from a specific sheet
+        function fetchDataFromSheet(sheetName, district, month, year, type) {
+            const range = `${sheetName}!A:I`; // Columns A to I
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`;
+            
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.values && data.values.length > 1) {
+                        return processSheetData(data.values, district, month, year, type, sheetName);
+                    }
+                    return [];
+                })
+                .catch(error => {
+                    console.error(`Error fetching data from ${sheetName}:`, error);
+                    return [];
+                });
+        }
+        
+        // Process data from a sheet
+        function processSheetData(rows, district, month, year, type, sheetName) {
             // Extract headers
             const headers = rows[0];
             const dataRows = rows.slice(1);
@@ -872,10 +539,15 @@
                 confirm: headers.indexOf("Confirm")
             };
             
+            // If confirm column doesn't exist, set it to -1
+            if (colIndex.confirm === -1) {
+                colIndex.confirm = -1;
+            }
+            
             // Filter data
-            const filteredData = dataRows.filter(row => {
-                // Check if all required columns exist
-                if (colIndex.confirm === -1 || colIndex.district === -1) {
+            return dataRows.filter(row => {
+                // Check if district column exists
+                if (colIndex.district === -1) {
                     return false;
                 }
                 
@@ -883,126 +555,229 @@
                 const rowType = row[colIndex.type] || '';
                 const rowMonth = row[colIndex.month] || '';
                 const rowYear = row[colIndex.year] || '';
-                const rowConfirm = row[colIndex.confirm] || '';
+                const rowConfirm = colIndex.confirm !== -1 ? (row[colIndex.confirm] || '') : '';
                 
                 // Apply filters
                 const matchesDistrict = rowDistrict.toString().trim() === district;
                 const matchesType = rowType.toString().trim() === type;
                 const matchesMonth = !month || rowMonth.toString().trim() === month;
                 const matchesYear = !year || rowYear.toString().trim().replace(/^'/, '') === year;
-                const isConfirmed = rowConfirm.toString().trim().toLowerCase() === 'yes';
                 
-                return matchesDistrict && matchesType && matchesMonth && matchesYear && isConfirmed;
+                // For response sheet, only show confirmed records
+                // For DTresponse sheet, show all records
+                if (sheetName === "response") {
+                    const isConfirmed = rowConfirm.toString().trim().toLowerCase() === 'yes';
+                    return matchesDistrict && matchesType && matchesMonth && matchesYear && isConfirmed;
+                } else {
+                    return matchesDistrict && matchesType && matchesMonth && matchesYear;
+                }
             });
-            
-            currentData = filteredData;
-            
-            if (filteredData.length > 0) {
-                displayData(filteredData, headers, colIndex, district, month, year, type);
-                $('#resultsSection').show();
-                $('#noResultsSection').hide();
-            } else {
-                $('#resultsSection').hide();
-                $('#noResultsSection').show();
-                $('#pdfButton').hide();
-            }
         }
         
-        // Display data in table
-        function displayData(data, headers, colIndex, district, month, year, type) {
-            const tableBody = $('#tableBody');
+        // Display data in tables
+        function displayData(receiptScheduleDataArray, dtScheduleDataArray, district, month, year, type) {
+            // Store data globally
+            receiptScheduleData = receiptScheduleDataArray;
+            dtScheduleData = dtScheduleDataArray;
+            
+            // Display receipt schedule data (sorted by treasury ascending)
+            displayReceiptScheduleData(receiptScheduleDataArray);
+            
+            // Display DT-Schedule data
+            displayDTScheduleData(dtScheduleDataArray);
+            
+            // Update heading and summary
+            updateHeading(district, month, year, type, receiptScheduleDataArray.length, dtScheduleDataArray.length);
+            
+            // Initialize DataTables
+            initializeDataTables();
+        }
+        
+        // Display receipt schedule data sorted by treasury ascending
+        function displayReceiptScheduleData(data) {
+            const tableBody = $('#receiptScheduleTableBody');
             tableBody.empty();
             
             let grandTotal = 0;
             
-            data.forEach((row, index) => {
-                const rowType = row[colIndex.type] || '';
-                const rowMonth = row[colIndex.month] || '';
-                const rowYear = row[colIndex.year] || '';
-                const rowGrossTotal = row[colIndex.grossTotal] || '0';
-                const rowTreasury = row[colIndex.treasury] || '';
-                const rowDocument = row[colIndex.document] || '';
-                
-                // Parse gross total (remove apostrophe if present)
-                const grossTotalStr = rowGrossTotal.toString().replace(/^'/, '');
-                const grossTotalNum = parseFloat(grossTotalStr) || 0;
-                grandTotal += grossTotalNum;
-                
-                // Format gross total for display
-                const formattedGrossTotal = grossTotalNum.toLocaleString('en-IN', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
+            if (data.length === 0) {
+                const noDataRow = `<tr><td colspan="8" class="text-center text-muted">No records found</td></tr>`;
+                tableBody.append(noDataRow);
+            } else {
+                // Sort data by Treasury column (index 2) in ascending order
+                const sortedData = [...data].sort((a, b) => {
+                    const treasuryA = (a[2] || '').toString().toLowerCase();
+                    const treasuryB = (b[2] || '').toString().toLowerCase();
+                    return treasuryA.localeCompare(treasuryB);
                 });
                 
-                // Format year (remove apostrophe if present)
-                const formattedYear = rowYear.toString().replace(/^'/, '');
-                
-                const rowHtml = `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${escapeHtml(rowTreasury)}</td>
-                        <td>
-                            <span class="${rowType === 'Receipt' ? 'receipt-badge' : 'payment-badge'}">
-                                ${escapeHtml(rowType)}
-                            </span>
-                        </td>
-                        <td>${escapeHtml(rowMonth)}</td>
-                        <td>${escapeHtml(formattedYear)}</td>
-                        <td class="text-end">${formattedGrossTotal}</td>
-                        <td>
-                            ${rowDocument ? 
-                                `<a href="${escapeHtml(rowDocument)}" target="_blank" 
-                                    class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-file-pdf"></i> View
-                                </a>` : 
-                                '<span class="text-muted">No Document</span>'
-                            }
-                        </td>
-                        <td>
-                            <span class="confirmed-badge">
-                                <i class="bi bi-check"></i> Confirmed
-                            </span>
-                        </td>
-                    </tr>
-                `;
-                
-                tableBody.append(rowHtml);
-            });
+                sortedData.forEach((row, index) => {
+                    // Since we don't have headers in the filtered data, we need to parse based on position
+                    const rowType = row[3] || ''; // Type column
+                    const rowMonth = row[4] || ''; // Month column
+                    const rowYear = row[5] || ''; // Year column
+                    const rowGrossTotal = row[6] || '0'; // Gross total column
+                    const rowTreasury = row[2] || ''; // Treasury column
+                    const rowDocument = row[7] || ''; // Document column
+                    
+                    // Parse gross total (remove apostrophe if present)
+                    const grossTotalStr = rowGrossTotal.toString().replace(/^'/, '');
+                    const grossTotalNum = parseFloat(grossTotalStr) || 0;
+                    grandTotal += grossTotalNum;
+                    
+                    // Format gross total for display
+                    const formattedGrossTotal = grossTotalNum.toLocaleString('en-IN', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    
+                    // Format year (remove apostrophe if present)
+                    const formattedYear = rowYear.toString().replace(/^'/, '');
+                    
+                    const rowHtml = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${escapeHtml(rowTreasury)}</td>
+                            <td>
+                                <span class="${rowType === 'Receipt' ? 'receipt-badge' : 'payment-badge'}">
+                                    ${escapeHtml(rowType)}
+                                </span>
+                            </td>
+                            <td>${escapeHtml(rowMonth)}</td>
+                            <td>${escapeHtml(formattedYear)}</td>
+                            <td class="text-end">${formattedGrossTotal}</td>
+                            <td>
+                                ${rowDocument ? 
+                                    `<a href="${escapeHtml(rowDocument)}" target="_blank" 
+                                        class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-file-pdf"></i> View
+                                    </a>` : 
+                                    '<span class="text-muted">No Document</span>'
+                                }
+                            </td>
+                            <td>
+                                <span class="confirmed-badge">
+                                    <i class="bi bi-check"></i> Confirmed
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    tableBody.append(rowHtml);
+                });
+            }
             
-            // Update totals
+            // Update grand total
             const formattedGrandTotal = grandTotal.toLocaleString('en-IN', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-            $('#grandTotal').text(formattedGrandTotal);
+            $('#receiptScheduleGrandTotal').text(formattedGrandTotal);
+        }
+        
+        // Display DT-Schedule data
+        function displayDTScheduleData(data) {
+            const tableBody = $('#dtScheduleTableBody');
+            tableBody.empty();
             
-            // Update heading and summary
-            updateHeading(district, month, year, type, data.length, grandTotal);
+            let grandTotal = 0;
             
-            // Show PDF button
-            $('#pdfButton').show();
+            if (data.length === 0) {
+                const noDataRow = `<tr><td colspan="8" class="text-center text-muted">No records found</td></tr>`;
+                tableBody.append(noDataRow);
+            } else {
+                data.forEach((row, index) => {
+                    // Since we don't have headers in the filtered data, we need to parse based on position
+                    const rowType = row[3] || ''; // Type column
+                    const rowMonth = row[4] || ''; // Month column
+                    const rowYear = row[5] || ''; // Year column
+                    const rowGrossTotal = row[6] || '0'; // Gross total column
+                    const rowTreasury = row[2] || ''; // Treasury column
+                    const rowDocument = row[7] || ''; // Document column
+                    const rowConfirm = row[8] || ''; // Confirm column
+                    
+                    // Parse gross total (remove apostrophe if present)
+                    const grossTotalStr = rowGrossTotal.toString().replace(/^'/, '');
+                    const grossTotalNum = parseFloat(grossTotalStr) || 0;
+                    grandTotal += grossTotalNum;
+                    
+                    // Format gross total for display
+                    const formattedGrossTotal = grossTotalNum.toLocaleString('en-IN', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    
+                    // Format year (remove apostrophe if present)
+                    const formattedYear = rowYear.toString().replace(/^'/, '');
+                    
+                    // Determine status badge
+                    const isConfirmed = rowConfirm.toString().trim().toLowerCase() === 'yes';
+                    const statusBadge = isConfirmed ? 
+                        `<span class="confirmed-badge">
+                            <i class="bi bi-check"></i> Confirmed
+                        </span>` :
+                        `<span class="unconfirmed-badge">
+                            <i class="bi bi-clock"></i> Pending
+                        </span>`;
+                    
+                    const rowHtml = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${escapeHtml(rowTreasury)}</td>
+                            <td>
+                                <span class="${rowType === 'Receipt' ? 'receipt-badge' : 'payment-badge'}">
+                                    ${escapeHtml(rowType)}
+                                </span>
+                            </td>
+                            <td>${escapeHtml(rowMonth)}</td>
+                            <td>${escapeHtml(formattedYear)}</td>
+                            <td class="text-end">${formattedGrossTotal}</td>
+                            <td>
+                                ${rowDocument ? 
+                                    `<a href="${escapeHtml(rowDocument)}" target="_blank" 
+                                        class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-file-pdf"></i> View
+                                    </a>` : 
+                                    '<span class="text-muted">No Document</span>'
+                                }
+                            </td>
+                            <td>${statusBadge}</td>
+                        </tr>
+                    `;
+                    
+                    tableBody.append(rowHtml);
+                });
+            }
             
-            // Initialize DataTable
-            initializeDataTable();
+            // Update grand total
+            const formattedGrandTotal = grandTotal.toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            $('#dtScheduleGrandTotal').text(formattedGrandTotal);
         }
         
         // Update heading and summary information
-        function updateHeading(district, month, year, type, count, total) {
-            let heading = `${district} - Confirmed ${type}s`;
+        function updateHeading(district, month, year, type, receiptScheduleCount, dtScheduleCount) {
+            let heading = `${district} - Records Summary`;
             
             if (month) heading += ` | Month: ${month}`;
             if (year) heading += ` | Year: ${year}`;
+            heading += ` | Type: ${type}`;
             
             $('#resultHeading').text(heading);
             
             // Update summary info
             const summary = `
                 <div class="row">
-                    <div class="col-md-3">
-                        <strong>Total Records:</strong> ${count}
+                    <div class="col-md-2">
+                        <strong>Receipt Schedules:</strong> ${receiptScheduleCount}
                     </div>
-                    <div class="col-md-3">
-                        <strong>Grand Total:</strong> ₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    <div class="col-md-2">
+                        <strong>DT-Schedule Records:</strong> ${dtScheduleCount}
+                    </div>
+                    <div class="col-md-2">
+                        <strong>Total Records:</strong> ${receiptScheduleCount + dtScheduleCount}
                     </div>
                     <div class="col-md-3">
                         <strong>Type:</strong> ${type}
@@ -1016,20 +791,21 @@
             $('#summaryInfo').html(summary);
         }
         
-        // Initialize DataTable
-        function initializeDataTable() {
-            dataTable = $('#resultsTable').DataTable({
+        // Initialize DataTables
+        function initializeDataTables() {
+            // Initialize Receipt Schedules DataTable (sorted by Treasury column ascending by default)
+            receiptScheduleTable = $('#receiptScheduleTable').DataTable({
                 paging: true,
-                pageLength: 25,
-                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
                 ordering: true,
-                order: [[4, 'desc'], [3, 'asc']], // Sort by Year desc, then Month asc
+                order: [[1, 'asc']], // Sort by Treasury column (index 1) ascending
                 columnDefs: [
-                    { orderable: false, targets: [0, 6, 7] } // Disable sorting for S.No, Document, and Confirm columns
+                    { orderable: false, targets: [0, 6, 7] } // Disable sorting for S.No, Document, and Status columns
                 ],
                 language: {
-                    search: "Search records:",
-                    lengthMenu: "Show _MENU_ records per page",
+                    search: "Search:",
+                    lengthMenu: "Show _MENU_ records",
                     info: "Showing _START_ to _END_ of _TOTAL_ records",
                     infoEmpty: "Showing 0 to 0 of 0 records",
                     infoFiltered: "(filtered from _MAX_ total records)",
@@ -1042,129 +818,32 @@
                     }
                 }
             });
-        }
-        
-        // Generate PDF
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({
-                orientation: 'landscape',
-                unit: 'mm',
-                format: 'a4'
+            
+            // Initialize DT-Schedule DataTable
+            dtScheduleTable = $('#dtScheduleTable').DataTable({
+                paging: true,
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
+                ordering: true,
+                order: [[1, 'asc']], // Sort by Treasury column (index 1) ascending
+                columnDefs: [
+                    { orderable: false, targets: [0, 6, 7] } // Disable sorting for S.No, Document, and Status columns
+                ],
+                language: {
+                    search: "Search:",
+                    lengthMenu: "Show _MENU_ records",
+                    info: "Showing _START_ to _END_ of _TOTAL_ records",
+                    infoEmpty: "Showing 0 to 0 of 0 records",
+                    infoFiltered: "(filtered from _MAX_ total records)",
+                    zeroRecords: "No matching records found",
+                    paginate: {
+                        first: "First",
+                        last: "Last",
+                        next: "Next",
+                        previous: "Previous"
+                    }
+                }
             });
-            
-            const today = new Date();
-            const dateStr = today.toLocaleDateString('en-IN');
-            
-            // Prepare data for PDF
-            const pdfData = currentData.map((row, index) => {
-                // Find column indices again
-                const headers = ["Timestamp", "Name of District Treasury", "Name of Treasury", "Type", "Month", "Year", "Gross total", "Document", "Confirm"];
-                const colIndex = {
-                    treasury: headers.indexOf("Name of Treasury"),
-                    type: headers.indexOf("Type"),
-                    month: headers.indexOf("Month"),
-                    year: headers.indexOf("Year"),
-                    grossTotal: headers.indexOf("Gross total"),
-                    document: headers.indexOf("Document")
-                };
-                
-                const rowType = row[colIndex.type] || '';
-                const rowMonth = row[colIndex.month] || '';
-                const rowYear = row[colIndex.year] || '';
-                const rowGrossTotal = row[colIndex.grossTotal] || '0';
-                const rowTreasury = row[colIndex.treasury] || '';
-                
-                // Parse and format values
-                const grossTotalNum = parseFloat(rowGrossTotal.toString().replace(/^'/, '')) || 0;
-                const formattedYear = rowYear.toString().replace(/^'/, '');
-                
-                return [
-                    index + 1,
-                    rowTreasury,
-                    rowType,
-                    rowMonth,
-                    formattedYear,
-                    '₹' + grossTotalNum.toFixed(2)
-                ];
-            });
-            
-            // Calculate grand total
-            const grandTotal = currentData.reduce((sum, row) => {
-                const grossTotal = row[headers.indexOf("Gross total")] || '0';
-                return sum + (parseFloat(grossTotal.toString().replace(/^'/, '')) || 0);
-            }, 0);
-            
-            // Header
-            doc.setFontSize(16);
-            doc.text('KPEPF Confirmed Records Report', 105, 15, { align: 'center' });
-            
-            doc.setFontSize(10);
-            doc.text(`District: ${$('#district').val()}`, 14, 25);
-            doc.text(`Month: ${$('#month').val() || 'All'}`, 14, 30);
-            doc.text(`Year: ${$('#year').val() || 'All'}`, 14, 35);
-            doc.text(`Type: ${$('input[name="type"]:checked').val()}`, 14, 40);
-            doc.text(`Generated On: ${dateStr}`, 14, 45);
-            
-            doc.text(`Total Records: ${currentData.length}`, 180, 25);
-            doc.text(`Grand Total: ₹${grandTotal.toFixed(2)}`, 180, 30);
-            
-            // Table
-            doc.autoTable({
-                startY: 50,
-                head: [['S.No', 'Treasury', 'Type', 'Month', 'Year', 'Gross Total (₹)']],
-                body: pdfData,
-                theme: 'grid',
-                headStyles: {
-                    fillColor: [102, 126, 234],
-                    textColor: [255, 255, 255],
-                    fontStyle: 'bold',
-                    fontSize: 9
-                },
-                styles: {
-                    cellPadding: 3,
-                    fontSize: 8,
-                    textColor: [0, 0, 0],
-                    lineColor: [0, 0, 0],
-                    lineWidth: 0.1
-                },
-                columnStyles: {
-                    0: { cellWidth: 15, halign: 'center' },
-                    1: { cellWidth: 40 },
-                    2: { cellWidth: 25, halign: 'center' },
-                    3: { cellWidth: 25, halign: 'center' },
-                    4: { cellWidth: 25, halign: 'center' },
-                    5: { cellWidth: 30, halign: 'right' }
-                },
-                margin: { left: 10, right: 10 }
-            });
-            
-            // Footer with total
-            doc.autoTable({
-                startY: doc.lastAutoTable.finalY + 10,
-                body: [[
-                    '',
-                    '',
-                    '',
-                    '',
-                    'Grand Total:',
-                    '₹' + grandTotal.toFixed(2)
-                ]],
-                theme: 'plain',
-                styles: {
-                    fontStyle: 'bold',
-                    fontSize: 9,
-                    textColor: [0, 0, 0]
-                },
-                columnStyles: {
-                    5: { halign: 'right' }
-                },
-                margin: { left: 10, right: 10 }
-            });
-            
-            // Save PDF
-            const fileName = `KPEPF_Confirmed_${$('#district').val().replace(/\s+/g, '_')}_${dateStr.replace(/\//g, '-')}.pdf`;
-            doc.save(fileName);
         }
         
         // Show message
