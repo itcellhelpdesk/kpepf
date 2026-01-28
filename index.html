@@ -200,6 +200,102 @@
             color: #495057;
         }
         
+        /* Login Modal Styles */
+        .login-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            z-index: 10;
+        }
+        
+        .form-control {
+            padding-left: 45px;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+        }
+        
+        .login-error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .forgot-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -215,177 +311,266 @@
                 align-items: flex-start;
                 gap: 10px;
             }
+            
+            .login-container {
+                padding: 20px;
+                width: 95%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="mb-0"><i class="bi bi-check-circle"></i> KPEPF Schedule Receipts & Payment Details</h4>
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-container">
+            <div class="login-header">
+                <h3><i class="bi bi-shield-lock"></i>KPEPF</h3>
+                <p> Login </p>
             </div>
             
-            <div class="card-body">
-                <!-- Filter Section -->
-                <div class="row g-3 mb-4">
-                    <div class="col-md-3">
-                        <label class="form-label">District Treasury</label>
-                        <select class="form-select" id="district" required>
-                            <option value="">Select District</option>
-                        </select>
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="bi bi-person-badge"></i>
+                        </span>
+                        <input type="text" 
+                               class="form-control" 
+                               id="loginUserId" 
+                               placeholder="Enter User ID" 
+                               required
+                               autocomplete="username">
                     </div>
-                    
-                    <div class="col-md-2">
-                        <label class="form-label">Month</label>
-                        <select class="form-select" id="month">
-                            <option value="">Select</option>
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-md-2">
-                        <label class="form-label">Year</label>
-                        <input type="text" class="form-control" id="year" placeholder="(YYYY format)">
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <label class="form-label">Type</label>
-                        <div class="radio-group">
-                            <div class="radio-option">
-                                <input type="radio" id="typeReceipt" name="type" value="Receipt" checked>
-                                <label for="typeReceipt">Receipt</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="typePayment" name="type" value="Payment">
-                                <label for="typePayment">Payment</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button class="btn btn-primary w-100" onclick="viewConfirmedData()">
-                            <i class="bi bi-eye"></i> View Data
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="bi bi-key"></i>
+                        </span>
+                        <input type="password" 
+                               class="form-control" 
+                               id="loginPassword" 
+                               placeholder="Enter Password" 
+                               required
+                               autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="loginTogglePassword">
+                            <i class="bi bi-eye"></i>
                         </button>
                     </div>
                 </div>
                 
-                <!-- Loading Spinner -->
-                <div id="loadingSection" class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Loading data. Please wait...</p>
+                <div class="text-danger small mt-2" id="loginError" style="display: none;">
+                    <i class="bi bi-exclamation-circle me-1"></i>
+                    <span id="loginErrorMessage"></span>
                 </div>
                 
-                <!-- Results Section -->
-                <div id="resultsSection" style="display: none;">
-                    <div class="month-year-display">
-                        <div class="result-header">
-                            <h5 id="resultHeading" style="color: #667eea; margin: 0;"></h5>
+                <button type="submit" class="btn btn-primary w-100 mt-3" id="loginButton">
+                    <span class="button-text">LogIn</span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                </button>
+                
+                <div class="text-center mt-3">
+                    <a href="javascript:void(0)" 
+                       class="forgot-link" 
+                       onclick="openForgotPasswordPopup()">
+                        <i class="bi bi-question-circle me-1"></i>
+                        Forgot Password?
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Main Content (Initially Hidden) -->
+    <div id="mainContent" style="display: none;">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-0"><i class="bi bi-check-circle"></i> KPEPF Schedule Receipts & Payment Details</h4>
                         </div>
-                        <div id="summaryInfo" class="mt-2"></div>
-                    </div>
-                    
-                    <!-- Receipt Schedules Section -->
-                    <div class="section-header">
-                        <i class="bi bi-check-circle-fill text-success"></i> All Treasury Schedules 
-                    </div>
-                    
-                    <div class="table-responsive mb-4">
-                        <table id="receiptScheduleTable" class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Treasury</th>
-                                    <th>Type</th>
-                                    <th>Month</th>
-                                    <th>Year</th>
-                                    <th>Gross Total</th>
-                                    <th>Document</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="receiptScheduleTableBody">
-                                <!-- Receipt schedule data will be inserted here -->
-                            </tbody>
-                            <tfoot>
-                                <tr class="total-row">
-                                    <td colspan="5" class="text-end fw-bold">Schedule Total:</td>
-                                    <td id="receiptScheduleGrandTotal" class="total-amount">0.00</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    
-                    <!-- DT- Schedule Details Section -->
-                    <div class="dt-schedule-header">
-                        <i class="bi bi-list-check text-warning"></i> DT- Schedule 
-                    </div>
-                    
-                    <div class="table-responsive">
-                        <table id="dtScheduleTable" class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Treasury</th>
-                                    <th>Type</th>
-                                    <th>Month</th>
-                                    <th>Year</th>
-                                    <th>Gross Total</th>
-                                    <th>Document</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="dtScheduleTableBody">
-                                <!-- DTresponse data will be inserted here -->
-                            </tbody>
-                            <tfoot>
-                                <tr class="total-row">
-                                    <td colspan="5" class="text-end fw-bold">DT-Schedule Total:</td>
-                                    <td id="dtScheduleGrandTotal" class="total-amount">0.00</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div>
+                            <button class="btn btn-sm btn-outline-light" onclick="logout()">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- No Results -->
-                <div id="noResultsSection" class="text-center py-5" style="display: none;">
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle fs-4"></i>
-                        <h5 class="mt-2">No Records Found</h5>
-                        <p>No records match your filter criteria. Try different filters.</p>
+                <div class="card-body">
+                    <!-- Filter Section -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-3">
+                            <label class="form-label">District Treasury</label>
+                            <select class="form-select" id="district" required>
+                                <option value="">Select District</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <label class="form-label">Month</label>
+                            <select class="form-select" id="month">
+                                <option value="">Select</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <label class="form-label">Year</label>
+                            <input type="text" class="form-control" id="year" placeholder="(YYYY format)">
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <label class="form-label">Type</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="typeReceipt" name="type" value="Receipt" checked>
+                                    <label for="typeReceipt">Receipt</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="typePayment" name="type" value="Payment">
+                                    <label for="typePayment">Payment</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-primary w-100" onclick="viewConfirmedData()">
+                                <i class="bi bi-eye"></i> View Data
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading Spinner -->
+                    <div id="loadingSection" class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading data. Please wait...</p>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div id="resultsSection" style="display: none;">
+                        <div class="month-year-display">
+                            <div class="result-header">
+                                <h5 id="resultHeading" style="color: #667eea; margin: 0;"></h5>
+                            </div>
+                            <div id="summaryInfo" class="mt-2"></div>
+                        </div>
+                        
+                        <!-- Receipt Schedules Section -->
+                        <div class="section-header">
+                            <i class="bi bi-check-circle-fill text-success"></i> All Treasury Schedules 
+                        </div>
+                        
+                        <div class="table-responsive mb-4">
+                            <table id="receiptScheduleTable" class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Treasury</th>
+                                        <th>Type</th>
+                                        <th>Month</th>
+                                        <th>Year</th>
+                                        <th>Gross Total</th>
+                                        <th>Document</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="receiptScheduleTableBody">
+                                    <!-- Receipt schedule data will be inserted here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="5" class="text-end fw-bold">Total:</td>
+                                        <td id="receiptScheduleGrandTotal" class="total-amount">0.00</td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        
+                        <!-- DT- Schedule Details Section -->
+                        <div class="dt-schedule-header">
+                            <i class="bi bi-list-check text-warning"></i> DT- Schedule (Consolidation)
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table id="dtScheduleTable" class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Treasury</th>
+                                        <th>Type</th>
+                                        <th>Month</th>
+                                        <th>Year</th>
+                                        <th>Gross Total</th>
+                                        <th>Document</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dtScheduleTableBody">
+                                    <!-- DTresponse data will be inserted here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="5" class="text-end fw-bold">Total:</td>
+                                        <td id="dtScheduleGrandTotal" class="total-amount">0.00</td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- No Results -->
+                    <div id="noResultsSection" class="text-center py-5" style="display: none;">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle fs-4"></i>
+                            <h5 class="mt-2">No Records Found</h5>
+                            <p>No records match your filter criteria. Try different filters.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script>
+        // Configuration
+        const API_KEY = "AIzaSyBAuS3Brpsw5JOJnjNJii1UlFa7ClXf8d4";
+        const SHEET_ID = "1J3hQtpZv4zyCUVANURf9B4lhORp2_ml-XlIWLZWR3aA";
+        const LOGIN_SHEET_ID = "11wvVQ2G41ke3g6RdfYX8AJAl0w-fnf2NQ_Agufz0wXY";
+        const SETTINGS_SHEET = "settings";
+        
         // Global variables
         let allDistricts = [];
         let receiptScheduleData = [];
         let dtScheduleData = [];
         let receiptScheduleTable = null;
         let dtScheduleTable = null;
-        const API_KEY = "AIzaSyBAuS3Brpsw5JOJnjNJii1UlFa7ClXf8d4";
-        const SHEET_ID = "1J3hQtpZv4zyCUVANURf9B4lhORp2_ml-XlIWLZWR3aA";
+        let isAuthenticated = false;
         
         // Initialize when page loads
         $(document).ready(function() {
             console.log("KPEPF Data View application loaded");
-            loadDistricts();
+            
+            // Check if already authenticated
+            checkAuth();
+            
+            // Initialize login form
+            initializeLogin();
             
             // Set current year as default
             const currentYear = new Date().getFullYear();
@@ -394,6 +579,199 @@
             // Set Receipt as default selection
             $('#typeReceipt').prop('checked', true);
         });
+        
+        // Check authentication status
+        function checkAuth() {
+            const authToken = sessionStorage.getItem('kpepf_auth_token');
+            const loginTime = sessionStorage.getItem('kpepf_login_time');
+            
+            if (authToken && loginTime) {
+                const currentTime = new Date().getTime();
+                const sessionAge = currentTime - parseInt(loginTime);
+                const SESSION_TIMEOUT = 15 * 60 * 1000; // 15 minutes
+                
+                if (sessionAge < SESSION_TIMEOUT) {
+                    isAuthenticated = true;
+                    showMainContent();
+                } else {
+                    // Session expired
+                    logout();
+                }
+            } else {
+                showLogin();
+            }
+        }
+        
+        // Show login modal
+        function showLogin() {
+            $('#loginModal').show();
+            $('#mainContent').hide();
+            $('#loginUserId').focus();
+        }
+        
+        // Show main content
+        function showMainContent() {
+            $('#loginModal').hide();
+            $('#mainContent').show();
+            loadDistricts();
+        }
+        
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('kpepf_auth_token');
+            sessionStorage.removeItem('kpepf_login_time');
+            sessionStorage.removeItem('kpepf_user_name');
+            sessionStorage.removeItem('kpepf_user_role');
+            isAuthenticated = false;
+            showLogin();
+        }
+        
+        // Initialize login form
+        function initializeLogin() {
+            // Toggle password visibility
+            $('#loginTogglePassword').click(function() {
+                const passwordInput = $('#loginPassword');
+                const icon = $(this).find('i');
+                
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                }
+            });
+            
+            // Auto-focus on user ID
+            $('#loginUserId').focus();
+            
+            // Auto-focus on password after user ID
+            $('#loginUserId').on('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('#loginPassword').focus();
+                }
+            });
+            
+            // Auto-submit on password enter
+            $('#loginPassword').on('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('#loginForm').submit();
+                }
+            });
+            
+            // Login form submission
+            $('#loginForm').submit(async function(e) {
+                e.preventDefault();
+                
+                const userId = $('#loginUserId').val().trim();
+                const password = $('#loginPassword').val().trim();
+                const loginButton = $('#loginButton');
+                const errorDiv = $('#loginError');
+                const errorText = $('#loginErrorMessage');
+                
+                // Reset errors
+                errorDiv.hide();
+                
+                // Basic validation
+                if (!userId || !password) {
+                    errorText.text('Please enter User ID and Password');
+                    errorDiv.show();
+                    return;
+                }
+                
+                // Show loading state
+                loginButton.prop('disabled', true);
+                loginButton.find('.button-text').text('Authenticating...');
+                loginButton.find('.spinner-border').removeClass('d-none');
+                
+                try {
+                    // Fetch credentials from Google Sheets
+                    const settingsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${LOGIN_SHEET_ID}/values/${SETTINGS_SHEET}!A2:F?key=${API_KEY}`;
+                    
+                    const response = await fetch(settingsUrl);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    
+                    const data = await response.json();
+                    const treasurySettings = data.values || [];
+                    
+                    let loginSuccessful = false;
+                    let userName = '';
+                    let userRole = '';
+                    
+                    // Check each row for matching credentials
+                    for (let i = 0; i < treasurySettings.length; i++) {
+                        const row = treasurySettings[i];
+                        if (row[1] === userId && row[2] === password) {
+                            loginSuccessful = true;
+                            userName = row[1] || userId;
+                            userRole = row[3] || 'User';
+                            break;
+                        }
+                    }
+                    
+                    if (loginSuccessful) {
+                        // Generate authentication token
+                        const loginTime = new Date().getTime();
+                        const random = Math.random().toString(36).substring(2);
+                        const authToken = btoa(`${loginTime}:${random}:${userName}`);
+                        
+                        // Store authentication data
+                        sessionStorage.setItem('kpepf_auth_token', authToken);
+                        sessionStorage.setItem('kpepf_login_time', loginTime.toString());
+                        sessionStorage.setItem('kpepf_user_name', userName);
+                        sessionStorage.setItem('kpepf_user_role', userRole);
+                        
+                        // Show success
+                        loginButton.find('.button-text').text('Success!');
+                        loginButton.removeClass('btn-primary').addClass('btn-success');
+                        
+                        setTimeout(() => {
+                            isAuthenticated = true;
+                            showMainContent();
+                        }, 1000);
+                        
+                    } else {
+                        // Failed login
+                        errorText.text('Invalid User ID or Password');
+                        errorDiv.show();
+                        
+                        // Shake animation
+                        $('#loginForm').addClass('shake');
+                        setTimeout(() => {
+                            $('#loginForm').removeClass('shake');
+                        }, 500);
+                    }
+                    
+                } catch (error) {
+                    console.error('Login Error:', error);
+                    errorText.text('Error connecting to server. Please try again later.');
+                    errorDiv.show();
+                    
+                } finally {
+                    // Reset button state
+                    loginButton.prop('disabled', false);
+                    loginButton.find('.button-text').text('Sign In');
+                    loginButton.find('.spinner-border').addClass('d-none');
+                    loginButton.removeClass('btn-success').addClass('btn-primary');
+                }
+            });
+        }
+        
+        // Forgot Password Popup
+        function openForgotPasswordPopup() {
+            const width = 600;
+            const height = 500;
+            const left = (screen.width - width) / 2;
+            const top = (screen.height - height) / 2;
+            
+            window.open(
+                'https://script.google.com/macros/s/AKfycbztfDzKffRaQXd5-_JyYGr_I26_7cXbmCApixAxv6ps/dev',
+                'ForgotPasswordPopup',
+                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,toolbar=no,location=no`
+            );
+        }
         
         // Load districts from Google Sheets
         function loadDistricts() {
@@ -438,6 +816,11 @@
         
         // View data based on filters
         function viewConfirmedData() {
+            if (!isAuthenticated) {
+                showLogin();
+                return;
+            }
+            
             const district = $('#district').val();
             const month = $('#month').val();
             const year = $('#year').val();
